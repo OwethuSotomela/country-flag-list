@@ -1,0 +1,13 @@
+h1{
+    text-align: center;
+}
+
+.container{
+    border: 2px solid royalblue;
+    border-radius: 12px;
+}
+
+.row{
+height: 90vh;
+display: flex;
+}

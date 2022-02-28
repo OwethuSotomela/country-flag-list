@@ -48,45 +48,34 @@ const flagList = [
     }
 ]
 
+let element = document.querySelector(".myList")
+var node = document.createElement("li");
+var textnode = document.createTextNode(flagList)
+node.appendChild(textnode);
 
-function displayElems() {
-    let element = document.querySelector(".myList")
-    var node = document.createElement("li");
-    var textnode = document.createTextNode(flagList)
-    node.appendChild(textnode);
-    if (element != null) {
-        element.appendChild(node);
-    }
-
-    display.innerHTML = CFLTemplate({
-        list: flagList, get country() {
-            return this.country;
-        },
-        set country(value) {
-            this.country = value;
-        },
-        list: flagList, get flag() {
-            return this.flag;
-        },
-        set flag(value) {
-            this.flag = value;
-        },
-    }
-    )
-
-    console.log(flagList)
-    return flagList;
+display.innerHTML = CFLTemplate({
+    list: flagList, get country() {
+        return this.country;
+    },
+    set country(value) {
+        this.country = value;
+    },
+    list: flagList, get flag() {
+        return this.flag;
+    },
+    set flag(value) {
+        this.flag = value;
+    },
 }
-
+)
 
 function addFlag() {
     if (countryName.value != null) {
         nameOf = document.querySelector(".enterCountry").value;
-    }
-
-    return displayElems();
+    } 
+    console.log(nameOf)
+    return nameOf;
 
 }
-
 
 addBtn.addEventListener("click", addFlag)

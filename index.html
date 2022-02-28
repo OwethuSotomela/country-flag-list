@@ -12,7 +12,9 @@
 
     <script type="text/x-template" class="CFLTemplate">
         <ul style="list-style: none;">
-                <li></li>
+            {{#each list}}
+                <li>{{this.flag}}{{this.country}}</li>
+                {{/each}}
         </ul>
     </script>
 
@@ -23,12 +25,17 @@
         <h1>Country Flag List</h1>
         <div class="row">
             <div class="col-12">
-                <input type="text" class="nameOfCountry" placeholder="Country Name Here">
+                <input type="text" class="enterCountry" placeholder="Country Name Here">
                 <input type="button" class="addBtn" value="Add">
+            </div>
+            <div class="col-12">
+                <ul class="myList" style="list-style: none;">
+                </ul>
             </div>
         </div>
     </div>
-    <script src="./js/app.js"></script>
+    <script src="./js/app.js" defer></script>
+    <script src="./js/country-FL-widget.js" defer></script>
 </body>
 
 </html>

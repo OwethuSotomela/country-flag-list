@@ -1,4 +1,5 @@
 var countryName = document.querySelector(".enterCountry");
+var countryFlag = document.querySelector(".enterFlag");
 var addBtn = document.querySelector(".addBtn");
 var display = document.querySelector(".myList");
 
@@ -54,6 +55,7 @@ if (localStorage['country']) {
 }
 
 const capitals = CountryFlagList(countryStored);
+
 console.log(countryStored)
 
 let element = document.querySelector(".myList")
@@ -61,8 +63,10 @@ var node = document.createElement("li");
 var textnode = document.createTextNode(flagList)
 node.appendChild(textnode);
 
-console.log(node)
-console.log(textnode)
+// element.insertBefore(node, element.children[0])
+
+// console.log(node)
+// console.log(textnode)
 
 display.innerHTML = CFLTemplate({
     list: flagList, get country() {

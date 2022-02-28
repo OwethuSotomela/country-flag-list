@@ -1,24 +1,52 @@
 h1{
     text-align: center;
+    margin-top: 5vh;
+    margin-bottom: 8vh;
+    text-shadow:  2px 2px 5px brown;
 }
 
 .container{
-    border: 2px solid royalblue;
+    background-color: bisque;
+    height: 100vh; 
+    border: 2px solid brown;
     border-radius: 12px;
+    align-items: center;
 }
-
-.row{
-    height: 90vh;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    background-repeat: no-repeat;
-}
-
-.myList{
-    background-color: yellow;
+input{
+    text-align:center;
+ }
+.myInput{
     margin-top: 5vh;
     display: flex;
     justify-content: center;
-    text-align: center;
+    text-align: flex-start;
+    align-items: center;
+ }
+ .enterFlag{
+    box-shadow: 0 20px 25px 0 rgba(0,0,0,1.1), 0 6px 20px 0 rgba(0,0,0,0.19);
+ }
+ .enterCountry{
+    box-shadow: 0 20px 25px 0 rgba(0,0,0,1.1), 0 6px 20px 0 rgba(0,0,0,0.19);
+ }
+.countryDisplay{
+    margin-top: 1vh;
+    display: flex;
+    justify-content: center;
+    text-align: flex-start;
+    align-items: center;
 }
+.addBtn {
+    background-color: orange; 
+    border: none;
+    color: white;
+    /* padding: 16px 32px 20px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    box-shadow: 0 20px 25px 0 rgba(0,0,0,1.1), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+

@@ -1,18 +1,21 @@
 function CountryFlagList(local) {
 
-    const countries = ["Argentina", "Brazil", "Chile", "Zambia", "Uganda", "Malawi", "Rwanda", "Ireland", "Switzerland"];
-    const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
-    var countryList = local;
+    var countryList = [];
+    countryList = local;
+    var message = "";
 
-    function addCountry(c_name){
-        console.log(c_name)
-        if (!countryList.includes(c_name)){
-            countryList.push(c_name)
+    function addCountry(c_name) {
+        if (c_name != '') {
+            var countryName = c_name[0].toUpperCase() + c_name.slice(1).toLowerCase();
+            if (!countryList.includes(countryName)) {
+                countryList.push(countryName)
+            } else {
+                message = "Country already added.."
+            }
         }
-        return c_name;
     }
 
-    function getCountry(){
+    function getCountry() {
         console.log(countryList)
         return countryList;
     }

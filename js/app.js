@@ -32,11 +32,11 @@ const flagList = [
     },
     {
         country: "Malawi",
-        flag:  "🇲🇼",
+        flag: "🇲🇼",
     },
     {
         country: "Rwanda",
-        flag:  "🇷🇼",
+        flag: "🇷🇼",
     },
     {
         country: "Ireland",
@@ -48,10 +48,21 @@ const flagList = [
     }
 ]
 
+var countryStored = [];
+if (localStorage['country']) {
+    countryStored = JSON.parse(localStorage.getItem('country'))
+}
+
+const capitals = CountryFlagList(countryStored);
+console.log(countryStored)
+
 let element = document.querySelector(".myList")
 var node = document.createElement("li");
 var textnode = document.createTextNode(flagList)
 node.appendChild(textnode);
+
+console.log(node)
+console.log(textnode)
 
 display.innerHTML = CFLTemplate({
     list: flagList, get country() {
@@ -72,10 +83,13 @@ display.innerHTML = CFLTemplate({
 function addFlag() {
     if (countryName.value != null) {
         nameOf = document.querySelector(".enterCountry").value;
-    } 
-    console.log(nameOf)
-    return nameOf;
-
+    }
+    if (nameOf != '') {
+        capitals.addCountry(nameOf)
+        localStorage.setItem('country', JSON.stringify(capitals.getCountry()));
+        display.innerHTML = capitals.getCountry()
+    }
+    return countryStored;
 }
 
 addBtn.addEventListener("click", addFlag)

@@ -58,8 +58,8 @@ var flagList = [
 // }
 
 // var countryStored = [];
-if (localStorage['country']) {
-    flagList = JSON.parse(localStorage.getItem('country'))
+if (localStorage[{flagOf, nameOf}]) {
+    flagList = JSON.parse(localStorage.getItem({flagOf, nameOf}))
 }
 
 // const capitals = CountryFlagList(countryStored);
@@ -106,7 +106,7 @@ function addCountryAndFlag() {
         message = "Enter the name of the country.."
     } else {
         capitals.addCountry({ flag: regexFlag, country: nameOf })
-        localStorage.setItem('country', JSON.stringify(capitals.getCountry()));
+        localStorage.setItem({flagOf, nameOf}, JSON.stringify(capitals.getCountry()));
         display.innerHTML = capitals.getCountry()
     }
     console.log(nameOf)

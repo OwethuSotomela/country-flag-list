@@ -1,6 +1,7 @@
 var countryName = document.querySelector(".enterCountry");
 var countryFlag = document.querySelector(".enterFlag");
 var addBtn = document.querySelector(".addBtn");
+var resetBtn = document.querySelector(".resetBtn");
 var display = document.querySelector(".myList");
 
 var templateSource = document.querySelector(".CFLTemplate").innerHTML;
@@ -8,9 +9,11 @@ var CFLTemplate = Handlebars.compile(templateSource);
 
 // const countries = ["Argentina", "Brazil", "Chile", "Zambia", "Uganda", "Malawi", "Rwanda", "Ireland", "Switzerland"];
 // const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
-var nameOf;
+var nameOf = countryName.value;
+var flagOf = countryFlag.value;
+message = '';
 
-const flagList = [
+var flagList = [
     {
         country: "Argentina",
         flag: "🇦🇷",
@@ -49,24 +52,27 @@ const flagList = [
     }
 ]
 
-var countryStored = [];
+// var countryStored = [];
+// if (localStorage['country']) {
+//     countryStored = JSON.parse(localStorage.getItem('country'))
+// }
+
+// var countryStored = [];
 if (localStorage['country']) {
-    countryStored = JSON.parse(localStorage.getItem('country'))
+    flagList = JSON.parse(localStorage.getItem('country'))
 }
 
-const capitals = CountryFlagList(countryStored);
+// const capitals = CountryFlagList(countryStored);
+const capitals = CountryFlagList(flagList);
 
-console.log(countryStored)
+
+// console.log(countryStored)
+console.log(flagList)
 
 let element = document.querySelector(".myList")
 var node = document.createElement("li");
 var textnode = document.createTextNode(flagList)
 node.appendChild(textnode);
-
-// element.insertBefore(node, element.children[0])
-
-// console.log(node)
-// console.log(textnode)
 
 display.innerHTML = CFLTemplate({
     list: flagList, get country() {
@@ -81,19 +87,46 @@ display.innerHTML = CFLTemplate({
     set flag(value) {
         this.flag = value;
     },
-}
-)
+})
 
-function addFlag() {
-    if (countryName.value != null) {
-        nameOf = document.querySelector(".enterCountry").value;
+function addCountryAndFlag() {
+
+    var regexFlag = /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/.test(flagOf);
+    console.log(regexFlag)
+
+    if (regexFlag != null) {
+        regexFlag = countryFlag.value;
     }
-    if (nameOf != '') {
-        capitals.addCountry(nameOf)
+    if (countryName != null) {
+        nameOf = countryName.value;
+    }
+    if (regexFlag == '') {
+        message = "Choose a Flag.."
+    } else if (nameOf == '') {
+        message = "Enter the name of the country.."
+    } else {
+        capitals.addCountry({ flag: regexFlag, country: nameOf })
         localStorage.setItem('country', JSON.stringify(capitals.getCountry()));
         display.innerHTML = capitals.getCountry()
     }
-    return countryStored;
+    console.log(nameOf)
+    // console.log(flagOf)
+    console.log(regexFlag)
+
+    // return countryStored;
+    return flagList;
 }
 
-addBtn.addEventListener("click", addFlag)
+function addFlag() {
+    addCountryAndFlag()
+}
+
+function clearStorage() {
+    setTimeout(function () {
+        localStorage.clear();
+        location.reload();
+    }, 1000)
+}
+
+addBtn.addEventListener("click", addFlag);
+resetBtn.addEventListener("click", clearStorage);

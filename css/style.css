@@ -4,7 +4,6 @@ h1{
     margin-bottom: 8vh;
     text-shadow:  2px 2px 5px brown;
 }
-
 .container{
     background-color: bisque;
     height: 100vh; 
@@ -50,4 +49,17 @@ input{
     cursor: pointer;
     box-shadow: 0 20px 25px 0 rgba(0,0,0,1.1), 0 6px 20px 0 rgba(0,0,0,0.19);
   }
-
+.resetBtn{
+    background-color: red; 
+    border: none;
+    color: white;
+    /* padding: 16px 32px 20px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    box-shadow: 0 20px 25px 0 rgba(0,0,0,1.1), 0 6px 20px 0 rgba(0,0,0,0.19);
+}

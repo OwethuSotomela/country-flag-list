@@ -3,6 +3,9 @@ var countryFlag = document.querySelector(".enterFlag");
 var addBtn = document.querySelector(".addBtn");
 var resetBtn = document.querySelector(".resetBtn");
 var display = document.querySelector(".myList");
+var feedback = document.querySelector(".feedback");
+var sortAscending = document.querySelector(".ascending");
+var sortDescending = document.querySelector(".descending");
 
 var templateSource = document.querySelector(".CFLTemplate").innerHTML;
 var CFLTemplate = Handlebars.compile(templateSource);
@@ -57,9 +60,9 @@ var flagList = [
 //     countryStored = JSON.parse(localStorage.getItem('country'))
 // }
 
-// var countryStored = [];
-if (localStorage[{flagOf, nameOf}]) {
-    flagList = JSON.parse(localStorage.getItem({flagOf, nameOf}))
+var countryStored = [];
+if (localStorage[{ flagOf, nameOf }]) {
+    countryStored = JSON.parse(localStorage.getItem({ flagOf, nameOf }));
 }
 
 // const capitals = CountryFlagList(countryStored);
@@ -92,7 +95,7 @@ display.innerHTML = CFLTemplate({
 function addCountryAndFlag() {
 
     var regexFlag = /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/.test(flagOf);
-    console.log(regexFlag)
+    // console.log(regexFlag)
 
     if (regexFlag != null) {
         regexFlag = countryFlag.value;
@@ -100,21 +103,34 @@ function addCountryAndFlag() {
     if (countryName != null) {
         nameOf = countryName.value;
     }
-    if (regexFlag == '') {
-        message = "Choose a Flag.."
-    } else if (nameOf == '') {
-        message = "Enter the name of the country.."
+    if (regexFlag == '' && nameOf == '') {
+        feedback.innerHTML = "Enter the name of the country and paste it's flag..!!"
     } else {
         capitals.addCountry({ flag: regexFlag, country: nameOf })
-        localStorage.setItem({flagOf, nameOf}, JSON.stringify(capitals.getCountry()));
-        display.innerHTML = capitals.getCountry()
+        localStorage.setItem({ flagOf, nameOf }, JSON.stringify(capitals.getCountry()));
+        // display.innerHTML = JSON.stringify(capitals.getCountry())
+        // display.innerHTML = JSON.compile(capitals.getCountry())
+        display.innerHTML = CFLTemplate({
+            list: flagList, get country() {
+                return this.country;
+            },
+            set country(value) {
+                this.country = value;
+            },
+            list: flagList, get flag() {
+                return this.flag;
+            },
+            set flag(value) {
+                this.flag = value;
+            },
+        })
     }
     console.log(nameOf)
     // console.log(flagOf)
     console.log(regexFlag)
-
-    // return countryStored;
-    return flagList;
+    console.log(countryStored)
+    return countryStored;
+    // return flagList;
 }
 
 function addFlag() {
@@ -128,5 +144,14 @@ function clearStorage() {
     }, 1000)
 }
 
+function ascending() {
+    display.innerHTML = JSON.stringify(flagList.sort())
+}
+function descending() {
+    display.innerHTML = JSON.stringify(flagList.reverse());
+}
+
 addBtn.addEventListener("click", addFlag);
 resetBtn.addEventListener("click", clearStorage);
+sortAscending.addEventListener("click", ascending);
+sortDescending.addEventListener("click", descending);

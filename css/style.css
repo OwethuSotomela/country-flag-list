@@ -22,11 +22,31 @@ input{
     text-align: flex-start;
     align-items: center;
  }
+ .myOtherInput{
+    /* margin-top: 5vh; */
+    display: flex;
+    justify-content: center;
+    text-align: flex-start;
+    align-items: center;
+ }
+ .ascending{
+    background-color: cadetblue;
+    color: white;
+    box-shadow: 0 20px 25px 0 rgba(0,0,0,1.1), 0 6px 20px 0 rgba(0,0,0,0.19);
+ }
  .enterFlag{
     box-shadow: 0 20px 25px 0 rgba(0,0,0,1.1), 0 6px 20px 0 rgba(0,0,0,0.19);
  }
  .enterCountry{
     box-shadow: 0 20px 25px 0 rgba(0,0,0,1.1), 0 6px 20px 0 rgba(0,0,0,0.19);
+ }
+ .feedback{
+    margin-top: 3vh;
+    display: flex;
+    justify-content: center;
+    text-align: flex-start;
+    align-items: center;
+    color: red;
  }
 .countryDisplay{
     margin-top: 1vh;

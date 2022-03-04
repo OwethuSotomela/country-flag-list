@@ -6,8 +6,6 @@ function CountryFlagList(local) {
 
     function addCountry({flag, country}) {
 
-        console.log(flag, country)
-
         if (flag != '' && country != '') {
             country = country[0].toUpperCase() + country.slice(1).toLowerCase();
         }
@@ -23,8 +21,18 @@ function CountryFlagList(local) {
         return countryList;
     }
 
+    // function sortAsce(){
+    //     countryList.sort()
+    // }
+
+    // function sortDesc(){
+    //     countryList.reverse()
+    // }
+
     return {
         addCountry,
-        getCountry
+        getCountry,
+        // sortAsce,
+        // sortDesc
     }
 }

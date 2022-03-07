@@ -6,6 +6,7 @@ var display = document.querySelector(".myList");
 var feedback = document.querySelector(".feedback");
 var sortAscending = document.querySelector(".ascending");
 var sortDescending = document.querySelector(".descending");
+var search = document.querySelector(".search");
 
 var templateSource = document.querySelector(".CFLTemplate").innerHTML;
 var CFLTemplate = Handlebars.compile(templateSource);
@@ -54,48 +55,37 @@ var flagList = [
         flag: "🇨🇭",
     }
 ]
+flagList = flagList;
 
-// var countryStored = [];
-// if (localStorage['country']) {
-//     countryStored = JSON.parse(localStorage.getItem('country'))
-// }
-
-var countryStored = [];
 if (localStorage[{ flagOf, nameOf }]) {
-    countryStored = JSON.parse(localStorage.getItem({ flagOf, nameOf }));
+    flagList = JSON.parse(localStorage.getItem({ flagOf, nameOf }));
 }
 
-// const capitals = CountryFlagList(countryStored);
 const capitals = CountryFlagList(flagList);
-
-
-// console.log(countryStored)
-console.log(flagList)
 
 let element = document.querySelector(".myList")
 var node = document.createElement("li");
 var textnode = document.createTextNode(flagList)
 node.appendChild(textnode);
 
-display.innerHTML = CFLTemplate({
-    list: flagList, get country() {
-        return this.country;
-    },
-    set country(value) {
-        this.country = value;
-    },
-    list: flagList, get flag() {
-        return this.flag;
-    },
-    set flag(value) {
-        this.flag = value;
-    },
-})
+// display.innerHTML = CFLTemplate({
+//     list: flagList, get country() {
+//         return this.country;
+//     },
+//     set country(value) {
+//         this.country = value;
+//     },
+//     list: flagList, get flag() {
+//         return this.flag;
+//     },
+//     set flag(value) {
+//         this.flag = value;
+//     },
+// })
 
 function addCountryAndFlag() {
 
     var regexFlag = /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/.test(flagOf);
-    // console.log(regexFlag)
 
     if (regexFlag != null) {
         regexFlag = countryFlag.value;
@@ -104,12 +94,13 @@ function addCountryAndFlag() {
         nameOf = countryName.value;
     }
     if (regexFlag == '' && nameOf == '') {
-        feedback.innerHTML = "Enter the name of the country and paste it's flag..!!"
+        setTimeout(function () {
+            feedback.innerHTML = "Enter the name of the country and paste it's flag..!!"
+        }, 0000);
     } else {
         capitals.addCountry({ flag: regexFlag, country: nameOf })
-        localStorage.setItem({ flagOf, nameOf }, JSON.stringify(capitals.getCountry()));
-        // display.innerHTML = JSON.stringify(capitals.getCountry())
-        // display.innerHTML = JSON.compile(capitals.getCountry())
+        localStorage.setItem('Flags + Countries', JSON.stringify(capitals.getCountry()));
+
         display.innerHTML = CFLTemplate({
             list: flagList, get country() {
                 return this.country;
@@ -125,33 +116,37 @@ function addCountryAndFlag() {
             },
         })
     }
-    console.log(nameOf)
-    // console.log(flagOf)
-    console.log(regexFlag)
-    console.log(countryStored)
-    return countryStored;
-    // return flagList;
+    console.log(flagList)
+    return flagList;
 }
 
 function addFlag() {
     addCountryAndFlag()
 }
 
-function clearStorage() {
-    setTimeout(function () {
-        localStorage.clear();
-        location.reload();
-    }, 1000)
+function reset() {
+    capitals.clearStorage()
 }
 
-function ascending() {
-    display.innerHTML = JSON.stringify(flagList.sort())
-}
 function descending() {
-    display.innerHTML = JSON.stringify(flagList.reverse());
+    // display.innerHTML = JSON.stringify(flagList.reverse());
+    display.innerHTML = CFLTemplate({
+        list: flagList, get country() {
+            return this.country;
+        },
+        set country(value) {
+            this.country = value;
+        },
+        list: flagList, get flag() {
+            return this.flag;
+        },
+        set flag(value) {
+            this.flag = value;
+        },
+    })
 }
 
 addBtn.addEventListener("click", addFlag);
-resetBtn.addEventListener("click", clearStorage);
+resetBtn.addEventListener("click", reset);
 sortAscending.addEventListener("click", ascending);
 sortDescending.addEventListener("click", descending);

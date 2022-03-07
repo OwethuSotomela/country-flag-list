@@ -4,7 +4,7 @@ function CountryFlagList(local) {
     countryList = local;
     var message = "";
 
-    function addCountry({flag, country}) {
+    function addCountry({ flag, country }) {
 
         if (flag != '' && country != '') {
             country = country[0].toUpperCase() + country.slice(1).toLowerCase();
@@ -17,22 +17,30 @@ function CountryFlagList(local) {
     }
 
     function getCountry() {
-        console.log(countryList)
         return countryList;
     }
-
-    // function sortAsce(){
-    //     countryList.sort()
+    
+    // function sortAsce() {
+        // countryList.sort()
     // }
 
     // function sortDesc(){
     //     countryList.reverse()
     // }
 
+    function clearStorage() {
+        setTimeout(function () {
+            localStorage.clear();
+            location.reload();
+        }, 0000)
+    }
+
+    
     return {
         addCountry,
         getCountry,
         // sortAsce,
-        // sortDesc
+        // sortDesc,
+        clearStorage
     }
 }

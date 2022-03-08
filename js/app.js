@@ -117,4 +117,4 @@ function ascending() {
 
 addBtn.addEventListener("click", addFlag);
 resetBtn.addEventListener("click", reset);
-sortAscending.addEventListener("clink", ascending)
+// sortAscending.addEventListener("clink", ascending)

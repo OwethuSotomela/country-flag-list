@@ -139,8 +139,30 @@ function sortAsce() {
     })
 }
 
+function sortDesce() {
+    let ascendingOrder = flagList.sort(function (a, b) {
+        return a.country < b.country ? 1 : -1;
+    })
+    console.log(ascendingOrder)
+    display.innerHTML = CFLTemplate({
+        list: ascendingOrder, get country() {
+            return this.country;
+        },
+        set country(value) {
+            this.country = value;
+        },
+        list: ascendingOrder, get flag() {
+            return this.flag;
+        },
+        set flag(value) {
+            this.flag = value;
+        },
+    })
+}
+
 
 addBtn.addEventListener("click", addFlag);
 resetBtn.addEventListener("click", reset);
 search.addEventListener("keyup", searchCountry);
 sortAscending.addEventListener("click", sortAsce);
+sortDescending.addEventListener("click", sortDesce);

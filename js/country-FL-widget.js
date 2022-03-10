@@ -36,10 +36,6 @@ function CountryFlagList(local) {
         })
     }
 
-    function displayAce(){
-
-    }
-
     function clearStorage() {
         setTimeout(function () {
             localStorage.clear();
@@ -51,7 +47,6 @@ function CountryFlagList(local) {
         addCountry,
         getCountry,
         clearStorage,
-        displayList,
-        displayAce
+        displayList
     }
 }

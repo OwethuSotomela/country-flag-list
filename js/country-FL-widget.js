@@ -19,14 +19,22 @@ function CountryFlagList(local) {
     function getCountry() {
         return countryList;
     }
-    
-    // function sortAsce() {
-        // countryList.sort()
-    // }
-
-    // function sortDesc(){
-    //     countryList.reverse()
-    // }
+    function displayList() {
+        display.innerHTML = CFLTemplate({
+            list: flagList, get country() {
+                return this.country;
+            },
+            set country(value) {
+                this.country = value;
+            },
+            list: flagList, get flag() {
+                return this.flag;
+            },
+            set flag(value) {
+                this.flag = value;
+            },
+        })
+    }
 
     function clearStorage() {
         setTimeout(function () {
@@ -35,12 +43,10 @@ function CountryFlagList(local) {
         }, 0000)
     }
 
-    
     return {
         addCountry,
         getCountry,
-        // sortAsce,
-        // sortDesc,
-        clearStorage
+        clearStorage,
+        displayList
     }
 }

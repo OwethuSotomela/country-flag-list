@@ -29,6 +29,10 @@ input{
     text-align: flex-start;
     align-items: center;
  }
+ .myLink{
+    text-align: center;
+    margin-top: 10vh;
+ }
  .ascending{
     background-color: cadetblue;
     color: white;
@@ -83,6 +87,4 @@ input{
     cursor: pointer;
     box-shadow: 0 20px 25px 0 rgba(0,0,0,1.1), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-.placeholder {
-   align-items: right;
-}
+

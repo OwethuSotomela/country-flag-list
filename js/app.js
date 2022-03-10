@@ -83,23 +83,8 @@ function addCountryAndFlag() {
     } else {
         capitals.addCountry({ flag: regexFlag, country: nameOf })
         localStorage.setItem('Flags + Countries', JSON.stringify(capitals.getCountry()));
-
-        display.innerHTML = CFLTemplate({
-            list: flagList, get country() {
-                return this.country;
-            },
-            set country(value) {
-                this.country = value;
-            },
-            list: flagList, get flag() {
-                return this.flag;
-            },
-            set flag(value) {
-                this.flag = value;
-            },
-        })
+        capitals.displayList()
     }
-    console.log(flagList)
     return flagList;
 }
 
@@ -111,10 +96,30 @@ function reset() {
     capitals.clearStorage()
 }
 
-function ascending() {
+function searchCountry() {
 
+    let filterCountry = search.value;
+    let searchedCountry = flagList.filter(function (element) {
+        return (element.country.toLowerCase()).includes(filterCountry.toLowerCase())
+    })
+    display.innerHTML = CFLTemplate({
+        list: searchedCountry, get country() {
+            return this.country;
+        },
+        set country(value) {
+            this.country = value;
+        },
+        list: searchedCountry, get flag() {
+            return this.flag;
+        },
+        set flag(value) {
+            this.flag = value;
+        },
+    })
 }
+
 
 addBtn.addEventListener("click", addFlag);
 resetBtn.addEventListener("click", reset);
-// sortAscending.addEventListener("clink", ascending)
+search.addEventListener("keyup", searchCountry);
+console.log(search.value)

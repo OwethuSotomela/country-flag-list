@@ -2,17 +2,19 @@ function CountryFlagList(local) {
 
     let countryList = [];
     countryList = local;
-    // let message = "";
 
     function addCountry({ flag, country }) {
 
         if (flag != '' && country != '') {
             country = country[0].toUpperCase() + country.slice(1).toLowerCase();
         }
-        if (!countryList.includes({ flag, country })) {
+
+        let myLocal = countryList.filter(function (item) {
+            return item.country == country
+        })
+        if (myLocal.length == 0) {
             countryList.push({ flag, country })
         } else {
-            // message = "Country already added.."
             feedback.innerHTML = "Country already added..."
         }
     }

@@ -160,7 +160,6 @@ function sortDesce() {
     })
 }
 
-
 addBtn.addEventListener("click", addFlag);
 resetBtn.addEventListener("click", reset);
 search.addEventListener("keyup", searchCountry);

@@ -1,8 +1,8 @@
 function CountryFlagList(local) {
 
-    var countryList = [];
+    let countryList = [];
     countryList = local;
-    var message = "";
+    // let message = "";
 
     function addCountry({ flag, country }) {
 
@@ -12,14 +12,17 @@ function CountryFlagList(local) {
         if (!countryList.includes({ flag, country })) {
             countryList.push({ flag, country })
         } else {
-            message = "Country already added.."
+            // message = "Country already added.."
+            feedback.innerHTML = "Country already added..."
         }
     }
 
     function getCountry() {
         return countryList;
     }
+
     function displayList() {
+
         display.innerHTML = CFLTemplate({
             list: flagList, get country() {
                 return this.country;
@@ -47,6 +50,6 @@ function CountryFlagList(local) {
         addCountry,
         getCountry,
         clearStorage,
-        displayList
+        displayList,
     }
 }

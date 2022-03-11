@@ -77,8 +77,8 @@ function addCountryAndFlag() {
         nameOf = countryName.value;
     }
     if (regexFlag == '' && nameOf == '') {
-        setTimeout(function () {
-            feedback.innerHTML = "Enter the name of the country and paste it's flag..!!"
+        setTimeout(()=> {
+            feedback.innerHTML = "Enter the name of the country and add it's flag..!!"
         }, 0000);
     } else {
         capitals.addCountry({ flag: regexFlag, country: nameOf })
@@ -99,7 +99,7 @@ function reset() {
 function searchCountry() {
 
     let filterCountry = search.value;
-    let searchedCountry = flagList.filter(function (element) {
+    let searchedCountry = flagList.filter((element) => {
         return (element.country.toLowerCase()).includes(filterCountry.toLowerCase());
     })
     display.innerHTML = CFLTemplate({
@@ -119,7 +119,7 @@ function searchCountry() {
 }
 
 function sortAsce() {
-    let ascendingOrder = flagList.sort(function (a, b) {
+    let ascendingOrder = flagList.sort((a, b) => {
         return a.country > b.country ? 1 : -1;
     })
     console.log(ascendingOrder)
@@ -140,7 +140,7 @@ function sortAsce() {
 }
 
 function sortDesce() {
-    let ascendingOrder = flagList.sort(function (a, b) {
+    let ascendingOrder = flagList.sort((a, b) => {
         return a.country < b.country ? 1 : -1;
     })
     console.log(ascendingOrder)

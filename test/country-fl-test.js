@@ -21,7 +21,7 @@ describe("RegexCheck", () => {
     })
     it('It should return false when an imoji is not a flag', () => {
         let regexFlag = /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/;
-        let flag = '😀';
+        let flag = '💗';
 
         assert(false, regexFlag.test(flag));
     })
